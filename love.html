@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Question 💖</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: url('https://i.ibb.co/vw8Hdy6/flower-bg.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    overflow: hidden;
+  }
+  .container {
+    text-align: center;
+    background: rgba(255,255,255,0.85);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  button {
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+    background: pink;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: hotpink;
+    transform: scale(1.1);
+  }
+  .hidden {
+    display: none;
+  }
+  .panda {
+    width: 150px;
+    margin: 15px auto;
+    animation: blink 2s infinite;
+  }
+  @keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+  }
+  .emoji {
+    font-size: 60px;
+    margin: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container" id="mainBox">
+  <h1>🌸 Welcome 🌸</h1>
+  <button onclick="startLove()">Start 💕</button>
+</div>
+
+<script>
+  function startLove() {
+    const box = document.getElementById('mainBox');
+    box.innerHTML = `
+      <h2>How much do you love me? 🐼💕</h2>
+      <img src="https://i.ibb.co/ZGrfPp6/cute-panda.png" class="panda" alt="Cute Panda">
+      <button onclick="chooseLove(0)">0%</button>
+      <button onclick="chooseLove(100)">100%</button>
+      <div id="feedback"></div>
+    `;
+  }
+
+  function chooseLove(percent) {
+    const feedback = document.getElementById('feedback');
+    if (percent === 0) {
+      feedback.innerHTML = `<div class="emoji">😢</div><p>Nooo, try again 💔</p>`;
+      setTimeout(startLove, 2000);
+    } else {
+      feedback.innerHTML = `<div class="emoji">🥰</div><p>Yaaay! I love you too 💖</p>`;
+      playClap();
+      setTimeout(() => {
+        document.getElementById('mainBox').innerHTML = `
+          <h2>🎉 You made me the happiest! 🎉</h2>
+          <p>You're my forever love 💘</p>
+        `;
+      }, 2500);
+    }
+  }
+
+  function playClap() {
+    const clap = new Audio("https://www.soundjay.com/human/applause-01.mp3");
+    clap.play();
+  }
+</script>
+</body>
+</html>
